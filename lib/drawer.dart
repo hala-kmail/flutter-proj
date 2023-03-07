@@ -54,22 +54,6 @@ await sectionref.where("email",isEqualTo:eee).get().then((value) {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @override
   void initState() {
     
@@ -100,10 +84,7 @@ await sectionref.where("email",isEqualTo:eee).get().then((value) {
          currentAccountPicture:CircleAvatar(backgroundImage:NetworkImage('${img}'),radius:40,),
         ),
 
-
-
-
-           ListTile(
+          ListTile(
             leading: Icon(Icons.map),
               title: Text("Map"),
               onTap: () { 

@@ -60,7 +60,7 @@ BitmapDescriptor icono(){
       });
      
       print(m);
-      for(int i=0; i<m.length;i++){
+      for(int i=0; i<m.length-1;i++){
     initMarker( i);
     }
              
@@ -71,7 +71,9 @@ BitmapDescriptor icono(){
 
   }
 void initMarker( k){
-
+if(m[k]['name']==' الجامعة العربية الامريكية'){
+  k++;
+}
 var markerIdVal= k;
 final MarkerId markerId= MarkerId('$markerIdVal');
 final Marker marker= Marker(
@@ -247,7 +249,10 @@ setState(() {
         body: Container(
           child: GoogleMap(
             initialCameraPosition: _kGooglePlex,
-            onTap: (_) {},
+            onTap: (_) {
+             
+              _data();
+            },
             mapType: MapType.normal,
             markers: Set<Marker>.of(markers.values),
             onMapCreated: (GoogleMapController controler) {
@@ -277,12 +282,12 @@ return icong();
               Marker marker1 = Marker(
                 
                   markerId: markerId1,
-                  position: const LatLng(32.410237, 35.288791),
+                  position: const LatLng(32.406568154653215, 35.34341085702181),
                   icon:iconty(),
                   infoWindow: InfoWindow(
                       title: "SMWC",
                       onTap: () {
-                        // _data();
+                        // _data();bb
                         var bottomSheetController = scaffoldKey.currentState!
                             .showBottomSheet((context) => Container(
                                   height: 250,
@@ -290,7 +295,7 @@ return icong();
                                   child: getBottomSheet(),
                                 ));
                       },
-                      snippet: "Smart Medical Waste Container"));
+                      snippet: "عيادة الجامعة العربية الامريكية"));
 
               setState(() {
                 markers[markerId1] = marker1;

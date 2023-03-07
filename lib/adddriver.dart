@@ -1,8 +1,6 @@
 
-// ignore_for_file: unnecessary_import, unused_import, depend_on_referenced_packages, avoid_print, prefer_const_constructors, unused_local_variable, unnecessary_string_interpolations, use_build_context_synchronously, avoid_unnecessary_containers, unnecessary_new, duplicate_ignore
-
+// ignore_for_file: unnecessary_import, unused_import, depend_on_referenced_packages, avoid_print, prefer_const_constructors, unused_local_variable, unnecessary_string_interpolations, use_build_context_synchronously, avoid_unnecessary_containers, unnecessary_new, duplicate_ignorze
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -75,6 +73,7 @@ class AddDriverState extends State<AddDriver> {
      driverref.add({
       "name":name,
       "Age":age,
+       "id":id,
       "phone":phone,
       "dob":dob,
       "imgurl":imgurl,
@@ -96,6 +95,7 @@ String location = "";
     String email="";
      String password="";
   String age="";
+  String id="";
   String phone="";
    String dob="";
    String imgurl="";
@@ -163,8 +163,27 @@ String location = "";
                       
         ],
           ),
-                    SizedBox(height: 20,)
+                    SizedBox(height: 20,),
           
+TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.key),
+                      hintText: 'Enter  driver id',
+                      labelText: 'ID',
+                    ),
+                onChanged: (value) {
+                  setState(() {
+                    id=value.toString();
+                  });
+                },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter id number';
+                      }
+                      return null;
+                    },
+                  )
+
           
                     , Text('personal informatien',style: TextStyle(color: Color.fromARGB(255, 23, 34, 40),fontWeight: FontWeight.bold,fontSize: 20),),
                     TextFormField(  
@@ -298,7 +317,7 @@ String location = "";
           
           
           
-                    // ignore: unnecessary_new
+                  
                     new Container( 
                      // color: Color.fromARGB(255, 76, 174, 220), 
                         padding: const EdgeInsets.only(left: 00.0, top: 40.0),  

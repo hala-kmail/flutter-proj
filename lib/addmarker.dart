@@ -141,19 +141,7 @@ BitmapDescriptor icono(){
                }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 CollectionReference conref = FirebaseFirestore.instance.collection('containers');
  List containers=[];
@@ -168,14 +156,7 @@ CollectionReference conref = FirebaseFirestore.instance.collection('containers')
     });
   }
 
-
-
-
-
-
-
-
-
+ 
 
   var x, y, z, tt, ff, zz,nm,ph;
   var lan, lat,name1;

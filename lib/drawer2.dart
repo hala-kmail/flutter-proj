@@ -118,13 +118,7 @@ await sectionref.where("email",isEqualTo:eee).get().then((value) {
               Navigator.pushNamed(context, '/stack3');
               },
             ),
-ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text("Add Driver"),
-              onTap: () {
-              Navigator.pushNamed(context, '/stack4');
-              },
-            ),
+
 
 ListTile(
               leading: Icon(Icons.person),

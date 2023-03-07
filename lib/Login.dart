@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, unused_import, avoid_print, prefer_const_constructors
 
 import 'package:SWMC/home.dart';
+import 'package:SWMC/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -166,6 +167,25 @@ height:
                               ),
                             ),
                           ),
+                          Row(
+              children: <Widget>[
+                const Text('Does not have account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign up',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: ((v) {
+                                      return const Signup();
+                                    })));
+                  },
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),
+        
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),

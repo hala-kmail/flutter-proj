@@ -82,10 +82,6 @@ Future<Position> _determinePosition() async {
 
 
 
-
-
-
-
   @override
 
   Widget build(BuildContext context) {

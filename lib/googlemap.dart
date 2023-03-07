@@ -57,7 +57,7 @@ BitmapDescriptor icono(){
       });
      
       print(m);
-      for(int i=0; i<m.length;i++){
+      for(int i=0; i<m.length-1;i++){
     initMarker( i);
     }
              
@@ -67,8 +67,10 @@ BitmapDescriptor icono(){
      
 
   }
-void initMarker( k){
-
+void initMarker(k){
+if(m[k]['name']==' الجامعة العربية الامريكية'){
+  k++;
+}
 var markerIdVal= k;
 final MarkerId markerId= MarkerId('$markerIdVal');
 final Marker marker= Marker(
@@ -116,14 +118,14 @@ setState(() {
 
 
   // ignore: prefer_typing_uninitialized_variables
-  var x, y, z, tt, ff, zz,img,nm,ph;
+  var x, y, z, tt, ff, zz,img,nm,ph,h;
   var lan, lat,name1;
   double an = 0.0;
   double at = 0.0;
   // double an = 0.0;
   //double at = 0.0;
-late double r;
-  Future<void> _data() async {
+
+  Future<void> _data() async {late double r;
     DatabaseReference _ref =
         FirebaseDatabase.instance.reference().child("test");
  final t3 = await _ref.child("img").get();
@@ -144,6 +146,7 @@ late double r;
     zz = t1.value.toString();
     name1=name.value.toString();
     tt = double.parse(y);
+    h = double.parse(x);
     z = sn.value.toString();
     r=double.parse(z);
     ff = double.parse(z);
@@ -170,26 +173,17 @@ late double r;
     var z1 = double.parse(z);
     var x1 = double.parse(x);
     var y1 = double.parse(y);
+ f.where("name",isEqualTo: " الجامعة العربية الامريكية").get().then((value) => f.doc(value.docs[0].id).update({"level":z,"tempreture":y,"humedity":x}));
+              
 
 
-
-    
-    setState(() {
-      x;
-      y;
-    });
-  }
-
-
-
-  void not() async{
-   
+  
  
-  if(r==6){
-    
+  if(r<=10 || tt>=25 || h>=50){
+
       AwesomeNotifications().createNotification(
      actionButtons: <NotificationActionButton>[
-      NotificationActionButton(key: 'yes', label: 'show',),
+      NotificationActionButton(key: 'yes', label: 'show',actionType: ActionType.DisabledAction),
     
     ],
     
@@ -198,16 +192,12 @@ late double r;
           id: 123,
           channelKey: 'basic',
           title: 'the continer must throw',
-          body: 'Joint and bone clinic-Outpatient clinics - Al-Razi Hospital - Jenin ',
-          
+          body: 'AAUP clinic-clinics-Jenin-(level=${100-r}cm,  tempreture=${tt}℃,                             humidity=${h}% )',
+        
           payload: {"name": "FlutterCampus"},
           autoDismissible: true,
           displayOnBackground: true,
           displayOnForeground: true,
-       //   bigPicture:'assets/smwc11.png' ,
-         // category: NotificationCategory.Alarm
-       //  notificationLayout: NotificationLayout.BigPicture
-          
         ),
         
     
@@ -219,9 +209,13 @@ late double r;
 
 
 
+  
 
-
+    
+   
   }
+
+
 
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -239,7 +233,7 @@ late double r;
   void initState() {
     getUsr();
   
-   
+   _data();
     getmarkers();
     
     super.initState();
@@ -253,7 +247,12 @@ late double r;
   @override
   Widget build(BuildContext context) {
     _data();
-    
+   // not();
+
+
+
+
+
     return MaterialApp(
      
  debugShowCheckedModeBanner: false,
@@ -282,8 +281,8 @@ late double r;
         body: Container(
           child: GoogleMap(
             initialCameraPosition: _kGooglePlex,
-            onTap: (_) async{
-               not();
+            onTap: (_){
+             _data();
             },
            
             mapType: MapType.normal,
@@ -307,21 +306,20 @@ return icong();
              
 
               _controller.complete(controler);
-
-              MarkerId markerId1 = const MarkerId("500");
+ 
+MarkerId markerId1 = const MarkerId("500");
              
               listMarkerIds.add(markerId1);
              
               Marker marker1 = Marker(
                 
                   markerId: markerId1,
-                  position: const LatLng(32.410237, 35.288791),
+                  position: const LatLng(32.406568154653215, 35.34341085702181),
                   icon:iconty(),
                   infoWindow: InfoWindow(
                       title: "SMWC",
                       onTap: () {
-                        // _data();
-                       
+                        // _data();bb
                         var bottomSheetController = scaffoldKey.currentState!
                             .showBottomSheet((context) => Container(
                                   height: 250,
@@ -329,16 +327,13 @@ return icong();
                                   child: getBottomSheet(),
                                 ));
                       },
-                      snippet: "Smart Medical Waste Container"));
+                      snippet: "عيادة الجامعة العربية الامريكية"));
 
               setState(() {
                 markers[markerId1] = marker1;
                 //markers[markerId2]=marker2;
                 // markers[markerId3]=marker3;
               });
-
-
-
 
             },
           ),
@@ -738,25 +733,6 @@ color2=Color.fromARGB(223, 29, 209, 74);
       ],
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
